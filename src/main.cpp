@@ -1,9 +1,7 @@
-#include "Board.h"
+#include "Game.h"
 
 int main() {
-    Board board;
-    board.place(1, 'X');
-    board.place(5, 'O');
-    board.display();
+    Game game;
+    game.run();
     return 0;
 }
