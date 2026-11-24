@@ -4,7 +4,7 @@
 class Game {
 public:
     Game();
-    
+    void push();
 
 private:
     Board board_;
