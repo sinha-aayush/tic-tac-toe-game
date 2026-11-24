@@ -1,4 +1,5 @@
 #pragma once
+#include <array>
 
 class Board {
 public:
