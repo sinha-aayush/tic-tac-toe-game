@@ -27,19 +27,29 @@ void Game::run() {
     std::cout << "=== Tic-Tac-Toe ===\n";
     std::cout << "Positions:\n 1 | 2 | 3\n---+---+---\n 4 | 5 | 6\n---+---+---\n 7 | 8 | 9\n";
 
-    while (!board_.isFull()) {
+    while (true) {
         board_.display();
 
         int move = readMove();
-        if (move == 0 && std::cin.eof()) return;   // input closed (Ctrl+Z), quit
+        if (move == 0 && std::cin.eof()) return;   // input closed, quit
 
         if (!board_.place(move, current_)) {
             std::cout << "Invalid move, that spot is taken or out of range. Try again.\n";
             continue;   // same player tries again
         }
+
+        if (board_.hasWon(current_)) {
+            board_.display();
+            std::cout << "Player " << current_ << " wins!\n";
+            return;
+        }
+
+        if (board_.isFull()) {
+            board_.display();
+            std::cout << "It's a draw!\n";
+            return;
+        }
+
         switchPlayer();
     }
-
-    board_.display();
-    std::cout << "Board is full. Game over!\n";
 }
